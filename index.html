@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bitcoin ETF Approval</title>
+        <style>
+            body {
+                background-color: #f7931a; /* Bitcoin logo color */
+                color: white;
+                text-align: center;
+                font-family: Arial, sans-serif;
+            }
+    
+            h1 {
+                font-size: 50px; /* Adjust the font size as needed */
+            }
+    
+            #countdown {
+                font-size: 34px; /* 2px smaller than the title */
+                margin: 20px;
+            }
+    
+            .countdown-value {
+                border: 1px solid black;
+                padding: 5px;
+                margin: 2px;
+                display: inline-block;
+            }
+    
+            .footer {
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: #333;
+                color: white;
+                text-align: center;
+            }
+    
+            ul {
+                list-style: none;
+                text-align: left;
+                display: inline-block;
+                padding: 0;
+            }
+    
+            ul li {
+                margin: 5px 0;
+            }
+    
+            .company-name {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+<body>
+    <h1>ETF APPROVAL</h1>
+    <div id="countdown">
+        <!-- JavaScript will update this part -->
+    </div>
+    <ul>
+        <li><span class="company-name">BlackRock</span> - iShares Bitcoin Trust ETF</li>
+        <li><span class="company-name">Fidelity</span> - Wise Origin Bitcoin Trust ETF</li>
+        <li><span class="company-name">Ark Invest</span> - ARK 21Shares Bitcoin ETF</li>
+        <li><span class="company-name">Invesco</span> - Invesco Galaxy Bitcoin ETF</li>
+        <li><span class="company-name">WisdomTree</span> - WisdomTree Bitcoin Trust ETF</li>
+        <li><span class="company-name">VanEck</span> - VanEck Bitcoin Trust ETF</li>
+        <li><span class="company-name">Bitwise</span> - Bitwise Bitcoin ETP Trust ETF</li>
+        <li><span class="company-name">Valkyrie</span> - Valkyrie Bitcoin Fund ETF</li>
+        <li><span class="company-name">GrayScale</span> - GBTC Conversion to ETF on NYSE</li>
+        <li><span class="company-name">Franklin Templeton</span> - Spot Bitcoin ETF</li>
+    </ul>
+    <div class="footer">
+        <p>By: BeneficioDiario</p>
+        <!-- Insert image here if needed -->
+    </div>
+    <script>
+        // Countdown timer JavaScript
+        var countDownDate = new Date("Jan 10, 2024 00:00:00").getTime();
+        var x = setInterval(function () {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
