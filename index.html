@@ -112,6 +112,44 @@
             color: red;
             /* Color rojo para indicar disminución */
         }
+
+
+
+
+
+        .info {
+            margin: 20px auto;
+            /* Centrar .info horizontalmente */
+            font-size: 16px;
+            text-align: left;
+            /* Texto alineado a la izquierda */
+            display: block;
+            /* Uso de block para permitir el centrado con márgenes automáticos */
+            width: fit-content;
+            /* Ajustar el ancho al contenido interno */
+        }
+
+        .info-title {
+            font-weight: bold;
+            text-align: left;
+            /* Alineación izquierda para el título */
+        }
+
+        .info-title-big {
+            font-size: 50px;
+            /* Mismo tamaño que el título ETF APPROVAL */
+            /* Otros estilos si son necesarios */
+        }
+
+        .info-item {
+            margin: 5px 0;
+            text-align: left;
+            /* Texto de cada elemento alineado a la izquierda */
+        }
+
+        .info-item-title {
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -124,7 +162,7 @@
         <!-- JavaScript will update this part -->
     </div>
     <ul>
-        <li><span class="company-name">₿lackRock</span> - iShares ₿itcoin Trust ETF</li>
+        <li><span class="company-name">BlackRock</span> - iShares ₿itcoin Trust ETF</li>
         <li><span class="company-name">Fidelity</span> - Wise Origin ₿itcoin Trust ETF</li>
         <li><span class="company-name">Ark Invest</span> - ARK 21Shares ₿itcoin ETF</li>
         <li><span class="company-name">Invesco</span> - Invesco Galaxy ₿itcoin ETF</li>
@@ -140,11 +178,86 @@
         <!-- Insert image here if needed -->
     </div>
 
-    <br><br><br><br><br><br><br><br>
+    <br>
+
+    <div class="info" id="bitcoin-info">
+        <div class="info-title-big">₿itcoin Network Information:</div>
+        <!-- Los datos se llenarán aquí mediante JavaScript -->
+    </div>
+
+
+
+    <br><br>
     <!-- Aquí puedes añadir un elemento donde se mostrará el precio del Bitcoin -->
     <div id="btc-price">Loading...</div>
     <div id="last-updated" style="color: white; font-size: 12px;">Last updated: --:--</div>
 
+
+
+    <script>
+        var halvingBlockHeight = 840000;
+        var currentBlockHeight = 0;
+
+        function fetchBitcoinInfo() {
+            const infoTitles = {
+                'getdifficulty': 'Current difficulty target as a decimal number',
+                'getblockcount': 'Current block height in the longest chain',
+                'latesthash': 'Hash of the latest block',
+                'bcperblock': 'Current block reward in BTC',
+                'totalbc': 'Total Bitcoins in circulation (delayed by up to 1 hour)',
+                'probability': 'Probability of finding a valid block each hash attempt',
+                'hashestowin': 'Average number of hash attempts needed to solve a block',
+                'nextretarget': 'Block height of the next difficulty re-target',
+                'eta': 'Estimated time until the next block (in seconds)'
+            };
+
+            const maxBitcoins = 21000000; // Máximo de Bitcoins
+
+            Object.keys(infoTitles).forEach(key => {
+                fetch(`https://blockchain.info/q/${key}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const infoDiv = document.getElementById('bitcoin-info');
+                        let displayData = data;
+
+                        // Convertir la dificultad a TH/s
+                        if (key === 'getdifficulty') {
+                            displayData = `${(data / 1e12).toFixed(3)} TH/s`;
+                        }
+
+                        // Formato para la altura del bloque actual
+                        if (key === 'getblockcount') {
+                            displayData += ` / 840000`;
+                        }
+
+                        // Total de Bitcoins en circulación en millones y porcentaje
+                        if (key === 'totalbc') {
+                            const totalInMillion = (data / 1e6).toFixed(2); // Convertir a millones con dos decimales
+                            const displayText = `${totalInMillion} Million`; // Formato de presentación
+                            displayData = `<span title="${data} Bitcoins">${displayText}</span>`; // Mostrar el valor formateado y el total completo al pasar el cursor
+                        }
+
+                        // Notación científica para hashestowin
+                        if (key === 'hashestowin') {
+                            const scientificNotation = data.toExponential(3);
+                            displayData = `<span title="${data}">${scientificNotation}</span>`;
+                        }
+                        if (key === 'probability') {
+                            const scientificNotation = data.toExponential(3);
+                            displayData = `<span title="${data}">${scientificNotation}</span>`;
+                        }
+
+                        infoDiv.innerHTML += `<div class="info-item"><span class="info-item-title">${infoTitles[key]}: </span>${displayData}</div>`;
+                    })
+                    .catch(error => {
+                        console.error(`Error fetching ${key}:`, error);
+                    });
+            });
+        }
+
+        fetchBitcoinInfo();
+        setInterval(fetchBitcoinInfo, 600000); // Update every 10 minutes
+    </script>
 
     <script>
         // Variable para almacenar el último precio para comparación
