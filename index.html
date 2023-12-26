@@ -143,19 +143,21 @@
     <br><br><br><br><br><br><br><br>
     <!-- Aquí puedes añadir un elemento donde se mostrará el precio del Bitcoin -->
     <div id="btc-price">Loading...</div>
+    <div id="last-updated" style="color: white; font-size: 12px;">Last updated: --:--</div>
 
 
     <script>
         // Variable para almacenar el último precio para comparación
         var lastPrice = null;
 
-        // Función para obtener y mostrar el precio del Bitcoin
+        // Función para obtener y mostrar el precio del Bitcoin y la hora de actualización
         function fetchBitcoinPrice() {
             fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json')
                 .then(response => response.json())
                 .then(data => {
                     var currentPrice = data.bpi.USD.rate_float;
                     var priceElement = document.getElementById('btc-price');
+                    var lastUpdatedElement = document.getElementById('last-updated');
                     var priceText = 'Bitcoin Price: $' + currentPrice.toFixed(2);
 
                     // Comparar con el último precio y decidir qué flecha mostrar
@@ -173,6 +175,13 @@
 
                     priceElement.innerText = priceText;
                     lastPrice = currentPrice; // Actualizar el último precio
+
+                    // Obtener y formatear la hora actual
+                    var now = new Date();
+                    var timeString = now.getHours().toString().padStart(2, '0') + ':' +
+                        now.getMinutes().toString().padStart(2, '0') + ':' +
+                        now.getSeconds().toString().padStart(2, '0');
+                    lastUpdatedElement.innerText = 'Last updated: ' + timeString;
                 })
                 .catch(error => {
                     console.error('Error fetching Bitcoin price:', error);
