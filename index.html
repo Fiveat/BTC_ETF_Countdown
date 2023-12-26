@@ -1,98 +1,193 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Bitcoin ETF Approval</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            body {
-                background-color: #f7931a;
-                color: white;
-                text-align: center;
-                font-family: Arial, sans-serif;
-            }
-    
+
+<head>
+    <title>₿itcoin ETF Approval</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="bd.png" /> <!-- Asegúrate de reemplazar con la ruta correcta al archivo -->
+
+
+    <style>
+        body {
+            background-color: #f7931a;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btc-logo {
+            width: 50px;
+            /* Adjust size as needed */
+            height: auto;
+            margin: 0 20px;
+            /* Adjust spacing as needed */
+        }
+
+        #countdown {
+            font-size: 34px;
+            margin: 20px;
+        }
+
+        .countdown-value {
+            border: 1px solid black;
+            padding: 5px;
+            margin: 2px;
+            display: inline-block;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            text-align: left;
+            display: inline-block;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 5px 0;
+        }
+
+        .company-name {
+            font-weight: bold;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 600px) {
             h1 {
-                font-size: 50px;
+                font-size: 30px;
             }
-    
+
             #countdown {
-                font-size: 34px;
-                margin: 20px;
+                font-size: 20px;
             }
-    
-            .countdown-value {
-                border: 1px solid black;
-                padding: 5px;
-                margin: 2px;
-                display: inline-block;
-            }
-    
-            .footer {
-                position: fixed;
-                left: 0;
-                bottom: 0;
-                width: 100%;
-                background-color: #333;
-                color: white;
+
+            ul {
                 text-align: center;
             }
-    
-            ul {
-                list-style: none;
-                text-align: left;
-                display: inline-block;
-                padding: 0;
+
+            .footer {
+                font-size: 14px;
             }
-    
-            ul li {
-                margin: 5px 0;
-            }
-    
-            .company-name {
-                font-weight: bold;
-            }
-    
-            /* Responsive Styles */
-            @media screen and (max-width: 600px) {
-                h1 {
-                    font-size: 30px;
-                }
-    
-                #countdown {
-                    font-size: 20px;
-                }
-    
-                ul {
-                    text-align: center;
-                }
-    
-                .footer {
-                    font-size: 14px;
-                }
-            }
-        </style>
-    </head>
+        }
+
+        #btc-price {
+            font-size: 24px;
+            /* Tamaño grande para destacar */
+            font-weight: bold;
+            /* Negrita para dar importancia */
+            margin: 20px 0;
+            /* Espacio antes y después */
+            padding: 10px;
+            background-color: #ffffff;
+            /* Fondo blanco para resaltar sobre el fondo de la página */
+            border-radius: 8px;
+            /* Bordes redondeados para un aspecto moderno */
+            display: inline-block;
+            color: #333;
+            /* Texto oscuro para contraste */
+        }
+
+        .price-up {
+            color: green;
+            /* Color verde para indicar aumento */
+        }
+
+        .price-down {
+            color: red;
+            /* Color rojo para indicar disminución */
+        }
+    </style>
+</head>
+
 <body>
-    <h1>ETF APPROVAL</h1>
+    <h1>
+        <img src="path_to_btc_logo.png" class="btc-logo" alt="Bitcoin Logo">ETF APPROVAL<img src="path_to_btc_logo.png"
+            class="btc-logo" alt="Bitcoin Logo">
+    </h1>
     <div id="countdown">
         <!-- JavaScript will update this part -->
     </div>
     <ul>
-        <li><span class="company-name">BlackRock</span> - iShares Bitcoin Trust ETF</li>
-        <li><span class="company-name">Fidelity</span> - Wise Origin Bitcoin Trust ETF</li>
-        <li><span class="company-name">Ark Invest</span> - ARK 21Shares Bitcoin ETF</li>
-        <li><span class="company-name">Invesco</span> - Invesco Galaxy Bitcoin ETF</li>
-        <li><span class="company-name">WisdomTree</span> - WisdomTree Bitcoin Trust ETF</li>
-        <li><span class="company-name">VanEck</span> - VanEck Bitcoin Trust ETF</li>
-        <li><span class="company-name">Bitwise</span> - Bitwise Bitcoin ETP Trust ETF</li>
-        <li><span class="company-name">Valkyrie</span> - Valkyrie Bitcoin Fund ETF</li>
-        <li><span class="company-name">GrayScale</span> - GBTC Conversion to ETF on NYSE</li>
-        <li><span class="company-name">Franklin Templeton</span> - Spot Bitcoin ETF</li>
+        <li><span class="company-name">₿lackRock</span> - iShares ₿itcoin Trust ETF</li>
+        <li><span class="company-name">Fidelity</span> - Wise Origin ₿itcoin Trust ETF</li>
+        <li><span class="company-name">Ark Invest</span> - ARK 21Shares ₿itcoin ETF</li>
+        <li><span class="company-name">Invesco</span> - Invesco Galaxy ₿itcoin ETF</li>
+        <li><span class="company-name">WisdomTree</span> - WisdomTree ₿itcoin Trust ETF</li>
+        <li><span class="company-name">VanEck</span> - VanEck ₿itcoin Trust ETF</li>
+        <li><span class="company-name">₿itwise</span> - ₿itwise ₿itcoin ETP Trust ETF</li>
+        <li><span class="company-name">Valkyrie</span> - Valkyrie ₿itcoin Fund ETF</li>
+        <li><span class="company-name">GrayScale</span> - G₿TC Conversion to ETF on NYSE</li>
+        <li><span class="company-name">Franklin Templeton</span> - Spot ₿itcoin ETF</li>
     </ul>
     <div class="footer">
-        <p>By: BeneficioDiario</p>
+        <p>By: ₿eneficioDiario</p>
         <!-- Insert image here if needed -->
     </div>
+
+    <br><br><br><br><br><br><br><br>
+    <!-- Aquí puedes añadir un elemento donde se mostrará el precio del Bitcoin -->
+    <div id="btc-price">Loading...</div>
+
+
+    <script>
+        // Variable para almacenar el último precio para comparación
+        var lastPrice = null;
+
+        // Función para obtener y mostrar el precio del Bitcoin
+        function fetchBitcoinPrice() {
+            fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json')
+                .then(response => response.json())
+                .then(data => {
+                    var currentPrice = data.bpi.USD.rate_float;
+                    var priceElement = document.getElementById('btc-price');
+                    var priceText = 'Bitcoin Price: $' + currentPrice.toFixed(2);
+
+                    // Comparar con el último precio y decidir qué flecha mostrar
+                    if (lastPrice !== null) {
+                        if (currentPrice > lastPrice) {
+                            priceText += ' 🡅'; // Flecha hacia arriba verde
+                            priceElement.classList.add('price-up');
+                            priceElement.classList.remove('price-down');
+                        } else if (currentPrice < lastPrice) {
+                            priceText += ' 🡇'; // Flecha hacia abajo roja
+                            priceElement.classList.add('price-down');
+                            priceElement.classList.remove('price-up');
+                        }
+                    }
+
+                    priceElement.innerText = priceText;
+                    lastPrice = currentPrice; // Actualizar el último precio
+                })
+                .catch(error => {
+                    console.error('Error fetching Bitcoin price:', error);
+                    document.getElementById('btc-price').innerText = 'Failed to load price';
+                });
+        }
+
+        // Llamar a la función al cargar la página
+        fetchBitcoinPrice();
+
+        // Configurar el intervalo para actualizar el precio cada 5 minutos
+        setInterval(fetchBitcoinPrice, 300000); // 300000 milisegundos = 5 minutos
+    </script>
+
+
     <script>
         // Countdown timer JavaScript
         var countDownDate = new Date("Jan 10, 2024 00:00:00").getTime();
@@ -111,4 +206,5 @@
         }, 1000);
     </script>
 </body>
+
 </html>
