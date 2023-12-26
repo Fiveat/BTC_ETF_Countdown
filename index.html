@@ -196,16 +196,18 @@
 
     <script>
         var bitcoinInfo = {
-    'getdifficulty': '',
-    'getblockcount': '',
-    'bcperblock': '',
-    'probability': '',
-    'hashestowin': '',
-    // Otros elementos si los hay
-};
-        
+            'getdifficulty': '',
+            'getblockcount': '',
+            'bcperblock': '',
+            'probability': '',
+            'hashestowin': '',
+            // Otros elementos si los hay
+        };
+
         var halvingBlockHeight = 840000;
         var currentBlockHeight = 0;
+        const maxBitcoins = 21000000; // Máximo de Bitcoins
+
 
         function fetchBitcoinInfo() {
             const infoTitles = {
@@ -217,7 +219,7 @@
                 'hashestowin': 'Average number of hash attempts needed to solve a block'
             };
 
-            const maxBitcoins = 21000000; // Máximo de Bitcoins
+
 
             Object.keys(infoTitles).forEach(key => {
                 fetch(`https://blockchain.info/q/${key}`)
@@ -259,11 +261,27 @@
                         console.error(`Error fetching ${key}:`, error);
                     });
             });
-            renderBitcoinInfo(infoTitles);
         }
 
+        
+        function updateBitcoinInfoDisplay() {
+            const infoDiv = document.getElementById('bitcoin-info');
+            infoDiv.innerHTML = ''; // Limpia el contenido actual
+
+            Object.keys(bitcoinInfo).forEach(key => {
+                let displayData = bitcoinInfo[key];
+
+                // Aquí puedes aplicar cualquier lógica de formateo necesaria para cada valor
+                // Por ejemplo, formatear 'getdifficulty' o 'hashestowin'
+
+                // Añade cada elemento de información al div
+                infoDiv.innerHTML += `<div class="info-item"><span class="info-item-title">${infoTitles[key]}: </span>${displayData}</div>`;
+            });
+        }
+
+        // Llama a fetchBitcoinInfo al cargar la página
         fetchBitcoinInfo();
-        setInterval(fetchBitcoinInfo, 600000); // Update every 10 minutes
+        setInterval(fetchBitcoinInfo, 600000); // Actualiza cada 10 minutos
     </script>
 
     <script>
