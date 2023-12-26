@@ -195,6 +195,15 @@
 
 
     <script>
+        var bitcoinInfo = {
+    'getdifficulty': '',
+    'getblockcount': '',
+    'bcperblock': '',
+    'probability': '',
+    'hashestowin': '',
+    // Otros elementos si los hay
+};
+        
         var halvingBlockHeight = 840000;
         var currentBlockHeight = 0;
 
@@ -250,6 +259,7 @@
                         console.error(`Error fetching ${key}:`, error);
                     });
             });
+            renderBitcoinInfo(infoTitles);
         }
 
         fetchBitcoinInfo();
